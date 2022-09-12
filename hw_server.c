@@ -1,5 +1,6 @@
 #include <rpc/rpc.h>
-
+#include <string.h>
+#include <math.h>
 // Interface gerada pelo RPCGen a partir da IDL (hw.x) especificada
 #include "hw.h"
 
@@ -51,6 +52,25 @@ struct param *func4_1_svc(void *b, struct svc_req *req) {
 
      printf ("FUNC4 (%d/%d)\n", a.arg1, a.arg2);
      return (&a);
+}
+
+float *operate_1_svc(struct param_operate *a, struct svc_req *req){
+     static float value;
+
+     if(strcmp(a->op,"+") == 0)
+          value = a->num1 + a->num2;
+     else if(strcmp(a->op,"-") == 0)
+          value = a->num1 - a->num2;
+     else if(strcmp(a->op,"*") == 0)
+          value = a->num1 * a->num2;
+     else if(strcmp(a->op,"/") == 0)
+          value = a->num1 / a->num2;
+     else{
+          printf("Operacao invalida");
+          value = 0.0/0.0;
+     }
+
+     return (&value);
 }
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

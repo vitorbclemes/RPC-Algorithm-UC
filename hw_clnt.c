@@ -84,6 +84,21 @@ func4_1(void *argp, CLIENT *clnt)
 	return (&clnt_res);
 }
 
+float *
+operate_1(param_operate *argp, CLIENT *clnt)
+{
+	static float clnt_res;
+
+	memset((char *)&clnt_res, 0, sizeof(clnt_res));
+	if (clnt_call (clnt, operate,
+		(xdrproc_t) xdr_param_operate, (caddr_t) argp,
+		(xdrproc_t) xdr_float, (caddr_t) &clnt_res,
+		TIMEOUT) != RPC_SUCCESS) {
+		return (NULL);
+	}
+	return (&clnt_res);
+}
+
 void *
 myexit_1(void *argp, CLIENT *clnt)
 {

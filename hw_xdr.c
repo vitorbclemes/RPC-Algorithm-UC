@@ -16,3 +16,17 @@ xdr_param (XDR *xdrs, param *objp)
 		 return FALSE;
 	return TRUE;
 }
+
+bool_t
+xdr_param_operate (XDR *xdrs, param_operate *objp)
+{
+	register int32_t *buf;
+
+	 if (!xdr_float (xdrs, &objp->num1))
+		 return FALSE;
+	 if (!xdr_float (xdrs, &objp->num2))
+		 return FALSE;
+	 if (!xdr_pointer (xdrs, (char **)&objp->op, sizeof (char), (xdrproc_t) xdr_char))
+		 return FALSE;
+	return TRUE;
+}

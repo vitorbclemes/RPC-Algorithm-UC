@@ -23,6 +23,7 @@ prog_1(struct svc_req *rqstp, register SVCXPRT *transp)
 		char *func1_1_arg;
 		int func2_1_arg;
 		param func3_1_arg;
+		param_operate operate_1_arg;
 	} argument;
 	char *result;
 	xdrproc_t _xdr_argument, _xdr_result;
@@ -61,6 +62,12 @@ prog_1(struct svc_req *rqstp, register SVCXPRT *transp)
 		_xdr_argument = (xdrproc_t) xdr_void;
 		_xdr_result = (xdrproc_t) xdr_param;
 		local = (char *(*)(char *, struct svc_req *)) func4_1_svc;
+		break;
+
+	case operate:
+		_xdr_argument = (xdrproc_t) xdr_param_operate;
+		_xdr_result = (xdrproc_t) xdr_float;
+		local = (char *(*)(char *, struct svc_req *)) operate_1_svc;
 		break;
 
 	case myexit:

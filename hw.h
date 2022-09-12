@@ -20,6 +20,13 @@ struct param {
 };
 typedef struct param param;
 
+struct param_operate {
+	float num1;
+	float num2;
+	char *op;
+};
+typedef struct param_operate param_operate;
+
 #define PROG 0x30009999
 #define VERS 1
 
@@ -39,7 +46,10 @@ extern  int * func3_1_svc(param *, struct svc_req *);
 #define func4 5
 extern  param * func4_1(void *, CLIENT *);
 extern  param * func4_1_svc(void *, struct svc_req *);
-#define myexit 6
+#define operate 6
+extern  float * operate_1(param_operate *, CLIENT *);
+extern  float * operate_1_svc(param_operate *, struct svc_req *);
+#define myexit 7
 extern  void * myexit_1(void *, CLIENT *);
 extern  void * myexit_1_svc(void *, struct svc_req *);
 extern int prog_1_freeresult (SVCXPRT *, xdrproc_t, caddr_t);
@@ -60,7 +70,10 @@ extern  int * func3_1_svc();
 #define func4 5
 extern  param * func4_1();
 extern  param * func4_1_svc();
-#define myexit 6
+#define operate 6
+extern  float * operate_1();
+extern  float * operate_1_svc();
+#define myexit 7
 extern  void * myexit_1();
 extern  void * myexit_1_svc();
 extern int prog_1_freeresult ();
@@ -70,9 +83,11 @@ extern int prog_1_freeresult ();
 
 #if defined(__STDC__) || defined(__cplusplus)
 extern  bool_t xdr_param (XDR *, param*);
+extern  bool_t xdr_param_operate (XDR *, param_operate*);
 
 #else /* K&R C */
 extern bool_t xdr_param ();
+extern bool_t xdr_param_operate ();
 
 #endif /* K&R C */
 
