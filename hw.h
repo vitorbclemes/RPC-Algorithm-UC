@@ -23,7 +23,7 @@ typedef struct param param;
 struct param_operate {
 	float num1;
 	float num2;
-	char *op;
+	char op;
 };
 typedef struct param_operate param_operate;
 

@@ -57,13 +57,13 @@ struct param *func4_1_svc(void *b, struct svc_req *req) {
 float *operate_1_svc(struct param_operate *a, struct svc_req *req){
      static float value;
 
-     if(strcmp(a->op,"+") == 0)
+     if(a->op == '+')
           value = a->num1 + a->num2;
-     else if(strcmp(a->op,"-") == 0)
+     else if(a->op == '-')
           value = a->num1 - a->num2;
-     else if(strcmp(a->op,"*") == 0)
+     else if(a->op == '*')
           value = a->num1 * a->num2;
-     else if(strcmp(a->op,"/") == 0)
+     else if(a->op == '/')
           value = a->num1 / a->num2;
      else{
           printf("Operacao invalida");
@@ -75,8 +75,5 @@ float *operate_1_svc(struct param_operate *a, struct svc_req *req){
 
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 void *myexit_1_svc(void *a, struct svc_req *req) {
-
-    printf ("Exit Server\n");
-
     exit(0);
 }

@@ -33,8 +33,6 @@ int main (int argc, char *argv[]) {
 	if (!fscanf(stdin, "%d %d %c", &parcela1, &parcela2, &operador)) {
 		printf ("ERRO\n");
 		return 1;
-	} else {
-		printf ("%d%c%d=21\n", parcela1, operador, parcela2);
 	}
 
 	// Conexão com servidor RPC
@@ -44,68 +42,20 @@ int main (int argc, char *argv[]) {
 		exit(1);
 	}
 
-	// // Atribuições de valores para os parâmetros
-	// strcpy (par_f1, "mauricio pillon");
-	// par_f2 = 1;
-	// par_f3.arg1 = 5;
-	// par_f3.arg2 = 4;
-
-  //       // Chamadas das funções remotas
-  //       printf ("Chamando func0 (sem parâmetros)\n");
-	// ret_f0 = func0_1(NULL, cl);
-	// if (ret_f0 == NULL) {
-	//     clnt_perror(cl,argv[1]);
-	//     exit(1);
-	// }
-  //       printf ("Retorno func0 (%s)\n", *ret_f0);
-
-  //       printf ("Chamando func1 (%s)\n", par_f1);
-	// ret_f1 = func1_1(&par_f1, cl);
-	// if (ret_f1 == NULL) {
-	//     clnt_perror(cl,argv[1]);
-	//     exit(1);
-	// }
-  //       printf ("Retorno func1 (%d)\n", *ret_f1);
-
-  //       printf ("Chamando func2 (%d)\n", par_f2);
-	// ret_f2 = func2_1(&par_f2, cl);
-	// if (ret_f2 == NULL) {
-	//     clnt_perror(cl,argv[1]);
-	//     exit(1);
-	// }
-  //       printf ("Retorno func2 (%d)\n", *ret_f2);
-
-  //       printf ("Chamando func3 (%d/%d)\n", par_f3.arg1, par_f3.arg2);
-  //       ret_f3 = func3_1(&par_f3, cl);
-	// if (ret_f3 == NULL) {
-	//     clnt_perror(cl,argv[1]);
-	//     exit(1);
-	// }
-  //       printf ("Retorno func3 (%d)\n", *ret_f3);
-
-  //       ret_f4 = (struct param *) malloc (sizeof(struct param));
-	// 			ret_f4->arg1 = 1;
-  //       ret_f4->arg2 = 2;
-  //       printf ("Chamando func4 (%d/%d)\n", ret_f4->arg1, ret_f4->arg2);
-  //       ret_f4 = func4_1(NULL, cl);
-	// if (ret_f4 == NULL) {
-	//     clnt_perror(cl,argv[1]);
-	//     exit(1);
-	// }
-  //       printf ("Retorno func4 (%d/%d)\n", ret_f4->arg1, ret_f4->arg2);
-
 	struct param_operate par_f5;
 	float *ret_f5 = NULL;
-	par_f5.num1 = 6;
-	par_f5.num2 = 2;
-	strcpy(par_f5.op,"+");
+	par_f5.num1 = parcela1;
+	par_f5.num2 = parcela2;
+	par_f5.op = operador;
 
 	ret_f5 = operate_1(&par_f5,cl);
-		if (ret_f5 == NULL) {
+	
+
+	if (ret_f5 == NULL) {
 	    clnt_perror(cl,argv[1]);
 	    exit(1);
 	}
-	printf ("Retorno func3 (%f)\n", *ret_f5);
+	printf ("%.0f%c%.0f=%.0f\n", par_f5.num1, par_f5.op, par_f5.num2, *ret_f5);
 
   // clnt_destroy(cl);
 	myexit_1(NULL, cl);
@@ -113,3 +63,53 @@ int main (int argc, char *argv[]) {
 
 	return 0;
 }
+
+	// // Atribuições de valores para os parâmetros
+	// strcpy (par_f1, "mauricio pillon");
+	// par_f2 = 1;
+	// par_f3.arg1 = 5;
+	// par_f3.arg2 = 4;
+
+    //     // Chamadas das funções remotas
+    //     printf ("Chamando func0 (sem parâmetros)\n");
+	// ret_f0 = func0_1(NULL, cl);
+	// if (ret_f0 == NULL) {
+	//     clnt_perror(cl,argv[1]);
+	//     exit(1);
+	// }
+    //     printf ("Retorno func0 (%s)\n", *ret_f0);
+
+    //     printf ("Chamando func1 (%s)\n", par_f1);
+	// ret_f1 = func1_1(&par_f1, cl);
+	// if (ret_f1 == NULL) {
+	//     clnt_perror(cl,argv[1]);
+	//     exit(1);
+	// }
+    //     printf ("Retorno func1 (%d)\n", *ret_f1);
+
+    //     printf ("Chamando func2 (%d)\n", par_f2);
+	// ret_f2 = func2_1(&par_f2, cl);
+	// if (ret_f2 == NULL) {
+	//     clnt_perror(cl,argv[1]);
+	//     exit(1);
+	// }
+    //     printf ("Retorno func2 (%d)\n", *ret_f2);
+
+    //     printf ("Chamando func3 (%d/%d)\n", par_f3.arg1, par_f3.arg2);
+    //     ret_f3 = func3_1(&par_f3, cl);
+	// if (ret_f3 == NULL) {
+	//     clnt_perror(cl,argv[1]);
+	//     exit(1);
+	// }
+    //     printf ("Retorno func3 (%d)\n", *ret_f3);
+
+    //     ret_f4 = (struct param *) malloc (sizeof(struct param));
+	// 			ret_f4->arg1 = 1;
+    //     ret_f4->arg2 = 2;
+    //     printf ("Chamando func4 (%d/%d)\n", ret_f4->arg1, ret_f4->arg2);
+    //     ret_f4 = func4_1(NULL, cl);
+	// if (ret_f4 == NULL) {
+	//     clnt_perror(cl,argv[1]);
+	//     exit(1);
+	// }
+    //     printf ("Retorno func4 (%d/%d)\n", ret_f4->arg1, ret_f4->arg2);

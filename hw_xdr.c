@@ -26,7 +26,7 @@ xdr_param_operate (XDR *xdrs, param_operate *objp)
 		 return FALSE;
 	 if (!xdr_float (xdrs, &objp->num2))
 		 return FALSE;
-	 if (!xdr_pointer (xdrs, (char **)&objp->op, sizeof (char), (xdrproc_t) xdr_char))
+	 if (!xdr_char (xdrs, &objp->op))
 		 return FALSE;
 	return TRUE;
 }

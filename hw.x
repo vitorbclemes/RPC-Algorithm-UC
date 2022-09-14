@@ -6,7 +6,7 @@ struct param {
 struct param_operate {
 	float num1;
 	float num2;
-	char *op;
+	char op;
 };
 
 program PROG {
